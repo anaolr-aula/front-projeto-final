@@ -7,27 +7,28 @@
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div id="imagem">
-        <img src="../imagens/Logo_clara.png" alt="Logo do sistema SIGOS">
-    </div>
-    
-    <div id="content-login">
+    <main id="login-container">
+        <div id="imagem">
+            <img src="../imagens/Logo_clara.png" alt="Logo do sistema SIGOS">
+        </div>
 
-        <form id="form-login">
-            <div class="item-form">
-                <label for="matricula">Matrícula:</label>
-                <input type="text" name="matricula" placeholder="Digite sua matrícula" id="matricula" required>
-            </div>
+        <div id="content-login">
 
-            <div class="item-form">
-                <label for="senha">Senha:</label>
-                <input type="password" name="senha" placeholder="Digite sua senha" id="senha" required>
-            </div>
+            <form id="form-login">
+                <div class="item-form">
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" name="matricula" id="matricula" placeholder="Digite sua matrícula" required>
+                </div>
 
-            <button type="submit">Acessar</button>
+                <div class="item-form">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                </div>
 
-            <a href="#">Esqueceu sua senha? Clique aqui</a>
-        </form>
-    </div>
+                <button type="submit">Acessar</button>
+                <a href="#">Esqueceu sua senha? Clique aqui</a>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

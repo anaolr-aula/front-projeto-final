@@ -150,13 +150,6 @@ textarea[readonly] {
     cursor: not-allowed;
 }
 
-#preview-anexo {
-    width: 300px;
-    max-width: 100%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
-
 @media (max-width: 1024px) {
     #painel {
         width: 220px;
@@ -169,11 +162,6 @@ textarea[readonly] {
 
     .info-grid {
         grid-template-columns: 1fr;
-    }
-
-    #preview-anexo {
-        width: 100%;
-        max-width: 420px;
     }
 }
 
@@ -221,9 +209,5 @@ textarea[readonly] {
     textarea,
     select {
         padding: 10px;
-    }
-
-    #preview-anexo {
-        max-width: 100%;
     }
 }

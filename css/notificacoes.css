@@ -10,7 +10,6 @@ body {
     flex-direction: column;
     background-color: #000;
     color: white;
-    font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -91,8 +90,8 @@ a:hover {
 }
 
 #btn-logout,
-#btn-salvar {
-    padding: 12px;
+#btn-marcar-lidas {
+    padding: 12px 16px;
     border-radius: 10px;
     border: none;
     background-color: #061f3d;
@@ -103,11 +102,11 @@ a:hover {
 }
 
 #btn-logout:hover,
-#btn-salvar:hover {
+#btn-marcar-lidas:hover {
     background-color: #0b2f59;
 }
 
-#content-detalhes {
+#content-notificacoes {
     flex: 1;
     background-color: #f4f6f8;
     color: #000;
@@ -117,44 +116,106 @@ a:hover {
     gap: 25px;
 }
 
-.info {
+#topo-notificacoes {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.info h3 {
-    color: #1E4F8A;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: space-between;
     gap: 20px;
 }
 
-input,
-textarea,
-select {
+#topo-notificacoes h1 {
+    color: #1E4F8A;
+    font-size: 1.8rem;
+}
+
+#lista-notificacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-notificacao {
+    display: flex;
+    gap: 20px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 6px solid transparent;
+}
+
+.card-notificacao.lida {
+    opacity: 0.7;
+}
+
+.card-notificacao.nao-lida {
+    background-color: #eef5ff;
+}
+
+.card-notificacao.ocorrencia {
+    border-left-color: #d62828;
+}
+
+.card-notificacao.sugestao {
+    border-left-color: #1E4F8A;
+}
+
+.icone-notificacao {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f1f3f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #1E4F8A;
+    flex-shrink: 0;
+}
+
+.conteudo-notificacao {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 1rem;
 }
 
-input[readonly],
-textarea[readonly] {
-    background-color: #e9ecef;
-    cursor: not-allowed;
+.linha-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-#preview-anexo {
-    width: 300px;
-    max-width: 100%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+.tipo {
+    font-weight: bold;
+    color: #1E4F8A;
+}
+
+.data {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.conteudo-notificacao p {
+    line-height: 1.5;
+    color: #222;
+}
+
+.btn-detalhes {
+    color: #1E4F8A;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.btn-detalhes:hover {
+    color: #061f3d;
+}
+
+#resumo-nao-lidas {
+    color: #555;
+    margin-top: 6px;
 }
 
 @media (max-width: 1024px) {
@@ -163,17 +224,12 @@ textarea[readonly] {
         padding: 25px 16px;
     }
 
-    #content-detalhes {
+    #content-notificacoes {
         padding: 24px;
     }
 
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #preview-anexo {
-        width: 100%;
-        max-width: 420px;
+    .card-notificacao {
+        padding: 18px;
     }
 }
 
@@ -193,12 +249,34 @@ textarea[readonly] {
         margin-top: 0;
     }
 
-    #content-detalhes {
+    #content-notificacoes {
         padding: 20px;
     }
 
-    #btn-salvar {
+    #topo-notificacoes {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #btn-marcar-lidas {
         width: 100%;
+    }
+
+    .card-notificacao {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .icone-notificacao {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+
+    .linha-topo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
 }
 
@@ -212,18 +290,24 @@ textarea[readonly] {
         font-size: 1.1rem;
     }
 
-    #content-detalhes {
+    #content-notificacoes {
         padding: 16px;
         gap: 18px;
     }
 
-    input,
-    textarea,
-    select {
-        padding: 10px;
+    #topo-notificacoes h1 {
+        font-size: 1.4rem;
     }
 
-    #preview-anexo {
-        max-width: 100%;
+    .card-notificacao {
+        padding: 16px;
+    }
+
+    .conteudo-notificacao p {
+        font-size: 0.95rem;
+    }
+
+    .data {
+        font-size: 0.85rem;
     }
 }

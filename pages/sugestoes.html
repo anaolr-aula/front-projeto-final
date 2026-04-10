@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes</title>
-    <link rel="stylesheet" href="../css/descricao.css">
+    <title>Detalhes da Sugestão</title>
+    <link rel="stylesheet" href="../css/sugestoes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <header>
         <div id="imagem">
-            <img src="../imagens/Logo_cortada.png" alt="Logo">
+            <img src="../imagens/Logo_cortada.png" alt="Logo do sistema">
         </div>
-        <h2>Detalhes da Ocorrência</h2>
+        <h2>Detalhes da Sugestão</h2>
     </header>
 
     <div id="dashboard">
@@ -31,7 +31,7 @@
                     <a href="./perfil-gestor.html">Perfil</a>
                 </div>
 
-                <div class="link-menu">
+                   <div class="link-menu">
                     <i class="fa-solid fa-user-plus"></i>
                     <a href="./cadastro.html">Cadastro</a>
                 </div>
@@ -47,7 +47,7 @@
                 </div>
             </nav>
 
-              <button id="btn-logout" type="button" onclick="window.location.href='../pages/login.html'">
+            <button id="btn-logout" type="button" onclick="window.location.href='../pages/login.html'">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Logout
             </button>
@@ -66,77 +66,48 @@
 
             <div class="info-grid">
                 <div class="info">
-                    <h3>Categoria</h3>
-                    <input type="text" id="categoria" readonly>
-                </div>
-
-                <div class="info">
                     <h3>Setor</h3>
                     <input type="text" id="setor" readonly>
                 </div>
+
+                <div class="info">
+                    <h3>Benefício esperado</h3>
+                    <input type="text" id="beneficio_esperado" readonly>
+                </div>
             </div>
 
             <div class="info-grid">
                 <div class="info">
-                    <h3>Local</h3>
-                    <input type="text" id="local" readonly>
+                    <h3>Autor</h3>
+                    <input type="text" id="autor" readonly>
                 </div>
 
                 <div class="info">
-                    <h3>Urgência</h3>
-                    <input type="text" id="urgencia" readonly>
+                    <h3>Data de envio</h3>
+                    <input type="text" id="data_envio" readonly>
                 </div>
             </div>
-
-            <div class="info">
-                <h3>Anexo</h3>
-                <img id="preview-anexo" src="" alt="Anexo da ocorrência">
-            </div>
-
-            <div class="info-grid">
-    <div class="info">
-        <h3>Autor</h3>
-        <input type="text" id="autor" readonly>
-    </div>
-
-    <div class="info">
-        <h3>Data de envio</h3>
-        <input type="text" id="data_envio" readonly>
-    </div>
-</div>
 
             <div class="info-grid">
                 <div class="info">
                     <h3>Status</h3>
                     <select id="status">
-                        <option value="aberta">Aberta</option>
+                        <option value="enviada">Enviada</option>
                         <option value="em_analise">Em análise</option>
-                        <option value="em_andamento">Em andamento</option>
-                        <option value="concluida">Concluída</option>
-                    </select>
-                </div>
-
-                <div class="info">
-                    <h3>Prioridade</h3>
-                    <select id="prioridade">
-                        <option value="">Selecione</option>
-                        <option value="baixa">Baixa</option>
-                        <option value="media">Média</option>
-                        <option value="alta">Alta</option>
-                        <option value="critica">Crítica</option>
+                        <option value="aprovada">Aprovada</option>
+                        <option value="rejeitada">Rejeitada</option>
                     </select>
                 </div>
             </div>
 
             <div class="info">
-                <h3>Observação do gestor</h3>
-                <textarea id="observacao_gestor" rows="4" placeholder="Digite uma observação"></textarea>
+                <h3>Parecer do gestor</h3>
+                <textarea id="parecer_gestor" rows="4" placeholder="Digite o parecer do gestor"></textarea>
             </div>
 
             <button id="btn-salvar" type="button">Salvar alterações</button>
         </main>
     </div>
 
-    <script src="../js/descricao.js"></script>
 </body>
 </html>
