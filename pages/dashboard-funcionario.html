@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <link rel="stylesheet" href="../css/dashboard-funcionario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <div id="imagem">
+            <img src="../imagens/Logo_cortada.png" alt="Logo do sistema" />
+          </div>
+
+        <nav>
+          <i class="fa-solid fa-bell">
+            <a href="#"></a>
+          </i>
+
+            <div id="usuario-header">
+                <div id="img-usuario-header">
+                  <i class="fa-solid fa-user" id="icone-usuario"></i>
+                </div>
+
+                <span>Nome do usuário</span>
+              </div>
+        </nav>
+
+    </header>
+
+    <div id="dashboard">
+
+      <aside id="painel">
+        <div id="usuario">
+            <div id="img-usuario">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <span>Nome do usuário</span>
+        </div>
+
+        <nav id="ferramentas">
+            <div class="link-menu">
+                <i class="fa-solid fa-user"></i>
+                <a href="./perfil-gestor.html">Perfil</a>
+            </div>
+
+       
+            <div class="link-menu">
+                <i class="fa-solid fa-chart-line"></i>
+                <a href="#">Dashboard</a>
+            </div>
+
+            <div class="link-menu">
+                <i class="fa-solid fa-bell"></i>
+                <a href="#">Notificações</a>
+            </div>
+        </nav>
+
+        <button id="btn-logout" type="button" onclick="window.location.href='../pages/login.html'">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+    </aside>
+
+    </div>
+    
+</body>
+</html>

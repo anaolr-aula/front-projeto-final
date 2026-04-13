@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notificações</title>
-    <link rel="stylesheet" href="../css/notificacoes.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/notificacoes.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 </head>
 <body>
     <header>
         <div id="imagem">
-            <img src="../imagens/Logo_cortada.png" alt="Logo do sistema">
+            <img src="../imagens/Logo_cortada.png" alt="Logo do sistema" />
         </div>
         <h2>Notificações</h2>
     </header>
@@ -22,7 +25,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <span>Gestor</span>
-                <span>Nome do usuário</span>
+                <span id="nome-sidebar">Nome do usuário</span>
             </div>
 
             <nav id="ferramentas">
@@ -31,23 +34,22 @@
                     <a href="./perfil-gestor.html">Perfil</a>
                 </div>
 
-                   <div class="link-menu">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <a href="./cadastro.html">Cadastro</a>
-                </div>
-
                 <div class="link-menu">
                     <i class="fa-solid fa-chart-line"></i>
-                    <a href="#">Dashboard</a>
+                    <a href="./dashboard-gestor.html">Dashboard</a>
                 </div>
 
                 <div class="link-menu">
                     <i class="fa-solid fa-bell"></i>
-                    <a href="#">Notificações</a>
+                    <a href="./notificacoes.html">Notificações</a>
                 </div>
             </nav>
 
-            <button id="btn-logout" type="button" onclick="window.location.href='../pages/login.html'">
+            <button
+                id="btn-logout"
+                type="button"
+                onclick="window.location.href='../pages/login.html'"
+            >
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Logout
             </button>
@@ -55,12 +57,15 @@
 
         <main id="content-notificacoes">
             <div id="topo-notificacoes">
-    <div>
-        <h1>Feed de notificações</h1>
-        <p id="resumo-nao-lidas">Você tem 2 notificações não lidas</p>
-    </div>
-    <button id="btn-marcar-lidas" type="button">Marcar todas como lidas</button>
-</div>
+                <div>
+                    <h1>Feed de notificações</h1>
+                    <p id="resumo-nao-lidas">Você tem 2 notificações não lidas</p>
+                </div>
+
+                <button id="btn-marcar-lidas" type="button">
+                    Marcar todas como lidas
+                </button>
+            </div>
 
             <section id="lista-notificacoes">
                 <article class="card-notificacao nao-lida ocorrencia">
@@ -80,7 +85,9 @@
                             <strong>Almoxarifado</strong>.
                         </p>
 
-                        <a href="./descricao.html" class="btn-detalhes">Ver detalhes</a>
+                        <a href="./detalhe-ocorrencia.html" class="btn-detalhes">
+                            Ver detalhes
+                        </a>
                     </div>
                 </article>
 
@@ -101,11 +108,13 @@
                             <strong>Administrativo</strong>.
                         </p>
 
-                        <a href="./sugestoes.html" class="btn-detalhes">Ver detalhes</a>
+                        <a href="./detalhe-sugestao.html" class="btn-detalhes">
+                            Ver detalhes
+                        </a>
                     </div>
                 </article>
 
-                <article class="card-notificacao ocorrencia">
+                <article class="card-notificacao lida ocorrencia">
                     <div class="icone-notificacao">
                         <i class="fa-solid fa-gear"></i>
                     </div>
@@ -121,11 +130,13 @@
                             foi atualizada para <strong>Em andamento</strong>.
                         </p>
 
-                        <a href="#" class="btn-detalhes">Ver detalhes</a>
+                        <a href="./detalhe-ocorrencia.html" class="btn-detalhes">
+                            Ver detalhes
+                        </a>
                     </div>
                 </article>
 
-                <article class="card-notificacao sugestao">
+                <article class="card-notificacao lida sugestao">
                     <div class="icone-notificacao">
                         <i class="fa-solid fa-circle-check"></i>
                     </div>
@@ -141,11 +152,15 @@
                             foi <strong>aprovada</strong> pelo gestor.
                         </p>
 
-                        <a href="#" class="btn-detalhes">Ver detalhes</a>
+                        <a href="./detalhe-sugestao.html" class="btn-detalhes">
+                            Ver detalhes
+                        </a>
                     </div>
                 </article>
             </section>
         </main>
     </div>
+
+    <script src="../js/notificacoes.js"></script>
 </body>
 </html>

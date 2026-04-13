@@ -17,18 +17,36 @@
             <form id="form-login">
                 <div class="item-form">
                     <label for="matricula">Matrícula</label>
-                    <input type="text" name="matricula" id="matricula" placeholder="Digite sua matrícula" required>
+                    <input
+                        type="text"
+                        name="matricula"
+                        id="matricula"
+                        placeholder="Digite sua matrícula"
+                        autocomplete="username"
+                        required
+                    >
                 </div>
 
                 <div class="item-form">
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                    <input
+                        type="password"
+                        name="senha"
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
                 </div>
+
+                <p id="mensagem-login" aria-live="polite"></p>
 
                 <button type="submit">Acessar</button>
                 <a href="#">Esqueceu sua senha? Clique aqui</a>
             </form>
         </div>
     </main>
+
+    <script src="../js/login.js"></script>
 </body>
 </html>

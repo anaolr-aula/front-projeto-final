@@ -99,13 +99,13 @@ header h2 {
     text-align: center;
 }
 
-a {
+.link-menu a {
     color: white;
     text-decoration: none;
     transition: 0.3s;
 }
 
-a:hover {
+.link-menu a:hover {
     color: #061f3d;
 }
 
@@ -186,6 +186,14 @@ a:hover {
     border-left-color: #1E4F8A;
 }
 
+.card-notificacao.usuario {
+    border-left-color: #2a9d8f;
+}
+
+.card-notificacao.sistema {
+    border-left-color: #6c757d;
+}
+
 .icone-notificacao {
     width: 50px;
     height: 50px;
@@ -233,6 +241,7 @@ a:hover {
     color: #1E4F8A;
     font-weight: bold;
     width: fit-content;
+    text-decoration: none;
 }
 
 .btn-detalhes:hover {

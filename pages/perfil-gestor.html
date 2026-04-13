@@ -25,7 +25,7 @@
             <i class="fa-solid fa-user"></i>
           </div>
           <span>Gestor</span>
-          <span>Nome do usuário</span>
+          <span id="nome-sidebar">Nome do usuário</span>
         </div>
 
         <nav id="ferramentas">
@@ -33,11 +33,6 @@
             <i class="fa-solid fa-user"></i>
             <a href="#">Perfil</a>
           </div>
-
-             <div class="link-menu">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <a href="./cadastro.html">Cadastro</a>
-                </div>
 
           <div class="link-menu">
             <i class="fa-solid fa-chart-line"></i>
@@ -61,91 +56,99 @@
       </aside>
 
       <main id="content-perfil">
-        <section class="card-perfil">
-          <div id="foto-perfil">
-            <i class="fa-solid fa-user-tie"></i>
-          </div>
-
-          <div id="acoes-foto">
-            <button type="button" class="btn-secundario">Alterar foto</button>
-          </div>
-        </section>
-
-        <section class="card-info">
-          <h3>Informações pessoais</h3>
-
-          <div class="info-grid">
-            <div class="campo">
-              <label for="nome">Nome completo</label>
-              <input type="text" id="nome" value="Nome do Gestor" />
+        <form id="form-perfil-gestor">
+          <section class="card-perfil">
+            <div id="foto-perfil">
+              <img id="preview-foto" src="" alt="Foto do gestor" />
+              <i class="fa-solid fa-user-tie" id="icone-foto"></i>
             </div>
 
-            <div class="campo">
-              <label for="matricula">Matrícula</label>
-              <input type="text" id="matricula" value="2024001" readonly />
+            <div id="acoes-foto">
+              <input type="file" id="input-foto" accept="image/*" hidden />
+              <button type="button" class="btn-secundario" id="btn-alterar-foto">
+                Alterar foto
+              </button>
             </div>
-          </div>
+          </section>
 
-          <div class="info-grid">
-            <div class="campo">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" value="gestor@empresa.com" />
+          <section class="card-info">
+            <h3>Informações pessoais</h3>
+
+            <div class="info-grid">
+              <div class="campo">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" />
+              </div>
+
+              <div class="campo">
+                <label for="matricula">Matrícula</label>
+                <input type="text" id="matricula" readonly />
+              </div>
             </div>
 
-            <div class="campo">
-              <label for="tipo_usuario">Tipo de usuário</label>
-              <input type="text" id="tipo_usuario" value="Gestor" readonly />
+            <div class="info-grid">
+              <div class="campo">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" />
+              </div>
+
+              <div class="campo">
+                <label for="tipo_usuario">Tipo de usuário</label>
+                <input type="text" id="tipo_usuario" readonly />
+              </div>
             </div>
-          </div>
-          <div class="info-grid">
-       
+
+            <div class="info-grid">
               <div class="campo">
                 <label for="cargo">Cargo</label>
-                <input type="text" id="cargo" value="Supervisor" readonly />
+                <input type="text" id="cargo" readonly />
               </div>
-    
+
               <div class="campo">
-                <label for="departamento">Departamento</label>
+                <label for="setor">Setor</label>
+                <input type="text" id="setor" readonly />
+              </div>
+            </div>
+          </section>
+
+          <section class="card-info">
+            <h3>Informações de acesso</h3>
+
+            <div class="info-grid">
+              <div class="campo">
+                <label for="senha">Nova senha</label>
                 <input
-                  type="text"
-                  id="departamento"
-                  value="Administrativo"
-                  readonly
+                  type="password"
+                  id="senha"
+                  placeholder="Digite uma nova senha"
                 />
               </div>
-          </div>
 
-        </section>
-
-        <section class="card-info">
-          <h3>Informações de acesso</h3>
-
-          <div class="info-grid">
-            <div class="campo">
-              <label for="senha">Nova senha</label>
-              <input
-                type="password"
-                id="senha"
-                placeholder="Digite uma nova senha"
-              />
+              <div class="campo">
+                <label for="confirmar-senha">Confirmar nova senha</label>
+                <input
+                  type="password"
+                  id="confirmar-senha"
+                  placeholder="Confirme a nova senha"
+                />
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div class="campo">
-            <label for="confirmar-senha">Confirmar nova senha</label>
-            <input
-              type="password"
-              id="confirmar-senha"
-              placeholder="Confirme a nova senha"
-            />
-          </div>
-        </section>
+          <p id="mensagem-perfil" aria-live="polite"></p>
 
-        <section id="acoes-perfil">
-          <button type="button" class="btn-secundario">Cancelar</button>
-          <button type="button" class="btn-principal">Salvar alterações</button>
-        </section>
+          <section id="acoes-perfil">
+            <button type="button" class="btn-secundario" id="btn-cancelar">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-principal">
+              Salvar alterações
+            </button>
+          </section>
+        </form>
       </main>
     </div>
+
+    <script src="../js/perfil-gestor.js"></script>
   </body>
 </html>

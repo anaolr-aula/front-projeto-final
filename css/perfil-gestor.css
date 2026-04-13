@@ -130,6 +130,12 @@ a:hover {
     gap: 25px;
 }
 
+#form-perfil-gestor {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
 .card-perfil,
 .card-info {
     background-color: white;
@@ -154,6 +160,24 @@ a:hover {
     align-items: center;
     justify-content: center;
     font-size: 3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+#preview-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+#icone-foto {
+    position: absolute;
+}
+
+#acoes-foto {
+    display: flex;
+    align-items: center;
 }
 
 .card-info h3 {
@@ -191,6 +215,12 @@ a:hover {
 .campo input[readonly] {
     background-color: #e9ecef;
     cursor: not-allowed;
+}
+
+#mensagem-perfil {
+    min-height: 20px;
+    font-size: 0.95rem;
+    color: #d62828;
 }
 
 #acoes-perfil {
@@ -249,6 +279,8 @@ a:hover {
     .btn-principal,
     .btn-secundario {
         width: 100%;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 }
