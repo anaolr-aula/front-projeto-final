@@ -9,11 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const campoDataEnvio = document.getElementById("data-envio");
     const campoSetorOrigem = document.getElementById("setor-origem");
 
-    const usuario = {
-        nome: "Mariana Alves",
-        setor: "Administrativo"
-    };
-
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+    const usuario = JSON.parse(usuarioString);
+    
     nomeSidebar.textContent = usuario.nome;
     campoSetorOrigem.value = usuario.setor;
 
@@ -105,14 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     btnCancelar.addEventListener("click", () => {
-        form.reset();
-
-        campoSetorOrigem.value = usuario.setor;
-        campoDataEnvio.value = formatarDataAtual();
-
-        previewContainer.style.display = "none";
-        previewAnexo.src = "";
-
-        mensagem.textContent = "";
+        window.location.href = "./minhas-solicitacoes.html";
     });
 });

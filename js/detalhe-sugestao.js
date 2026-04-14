@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const nomeSidebar = document.getElementById("nome-sidebar");
+    const perfilSidebar = document.getElementById("perfil-sidebar");
+const ferramentas = document.getElementById("ferramentas");
 
     const campos = {
         titulo: document.getElementById("titulo"),
@@ -16,10 +18,84 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Mock temporário até conectar com o backend
-    const gestor = {
-        nome: "Carlos Souza",
-        setor: "TI"
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+
+    const usuarioLogado = JSON.parse(usuarioString);
+
+    function montarMenu(perfil) {
+        nomeSidebar.textContent = usuarioLogado.nome;
+
+        if (perfil === "funcionario") {
+            perfilSidebar.textContent = "Funcionário";
+            ferramentas.innerHTML = `
+                <div class="link-menu">
+                    <i class="fa-solid fa-house"></i>
+                    <a href="./dashboard-funcionario.html">Início</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <a href="./nova-ocorrencia.html">Nova ocorrência</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <a href="./nova-sugestao.html">Nova sugestão</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <a href="./minhas-solicitacoes.html">Minhas solicitações</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="./perfil-funcionario.html">Perfil</a>
+                </div>
+            `;
+        }
+
+        if (perfil === "gestor") {
+            perfilSidebar.textContent = "Gestor";
+            ferramentas.innerHTML = `
+                <div class="link-menu">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="./perfil-gestor.html">Perfil</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-table-columns"></i>
+                    <a href="./painel-solicitacoes-gestor.html">Solicitações</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-bell"></i>
+                    <a href="./notificacoes.html">Notificações</a>
+                </div>
+            `;
+        }
+
+        if (perfil === "admin") {
+            perfilSidebar.textContent = "Administrador";
+            ferramentas.innerHTML = `
+                <div class="link-menu">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="./perfil-admin.html">Perfil</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <a href="./cadastro-usuario.html">Cadastro</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <a href="./dashboard-admin.html">Dashboard</a>
+                </div>
+                <div class="link-menu">
+                    <i class="fa-solid fa-bell"></i>
+                    <a href="./notificacoes-admin.html">Notificações</a>
+                </div>
+            `;
+        }
+    }
+
 
     const sugestao = {
         id: 9,
@@ -35,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function preencherTela() {
-        nomeSidebar.textContent = gestor.nome;
+        nomeSidebar.textContent = usuarioLogado.nome;
 
         campos.titulo.value = sugestao.titulo;
         campos.descricao.value = sugestao.descricao;
@@ -85,6 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(erro);
         }
     });
+
+    montarMenu(usuarioLogado.perfil);
 
     preencherTela();
 });

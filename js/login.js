@@ -10,25 +10,26 @@ form.addEventListener("submit", async (event) => {
     mensagem.textContent = "";
 
     try {
-        // Exemplo temporário até conectar no backend
-        if (!matricula || !senha) {
-            mensagem.textContent = "Preencha todos os campos.";
-            return;
-        }
+        let usuarioLogado = null;
 
-        // Simulação
         if (matricula === "111" && senha === "123") {
+            usuarioLogado = { nome: "Mariana Alves", perfil: "funcionario", setor: "Administrativo" };
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
             window.location.href = "./dashboard-funcionario.html";
             return;
         }
 
         if (matricula === "222" && senha === "123") {
-            window.location.href = "./dashboard-gestor.html";
+            usuarioLogado = { nome: "Carlos Souza", perfil: "gestor", setor: "TI" };
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+            window.location.href = "./dashboard-gestor.html"; // Criaremos esta página depois
             return;
         }
 
         if (matricula === "333" && senha === "123") {
-            window.location.href = "./dashboard-admin.html";
+            usuarioLogado = { nome: "Fernanda Costa", perfil: "admin", setor: "TI" };
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+            window.location.href = "./dashboard-admin.html"; // Criaremos esta página depois
             return;
         }
 

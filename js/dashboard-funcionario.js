@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const sugestoesAprovadas = document.getElementById("sugestoes-aprovadas");
     const listaAtividades = document.getElementById("lista-atividades");
 
-    const funcionarioMock = {
-        id: 1,
-        nome: "Mariana Alves",
-        setor: "Administrativo"
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+    const funcionarioMock = JSON.parse(usuarioString);
 
     const dashboardMock = {
         ocorrencias_abertas: 2,

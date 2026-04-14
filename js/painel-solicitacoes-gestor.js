@@ -9,10 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalSugestoes = document.getElementById("total-sugestoes");
     const totalEmAnalise = document.getElementById("total-em-analise");
 
-    const gestor = {
-        nome: "Carlos Souza",
-        setor: "TI"
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+    const gestor = JSON.parse(usuarioString);
 
     const solicitacoes = [
         {

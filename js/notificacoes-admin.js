@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnMarcarLidas = document.getElementById("btn-marcar-lidas");
     const listaNotificacoes = document.getElementById("lista-notificacoes");
 
-    const admin = {
-        nome: "Fernanda Costa"
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+    const admin = JSON.parse(usuarioString);
 
     const notificacoesMock = [
         {

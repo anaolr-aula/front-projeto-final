@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const previewAnexo = document.getElementById("preview-anexo");
     const campoDataEnvio = document.getElementById("data-envio");
 
-    const usuario = {
-        nome: "Mariana Alves"
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+    const usuario = JSON.parse(usuarioString);
 
     nomeSidebar.textContent = usuario.nome;
 
@@ -94,10 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     btnCancelar.addEventListener("click", () => {
-        form.reset();
-        campoDataEnvio.value = formatarDataAtual();
-        previewContainer.style.display = "none";
-        previewAnexo.src = "";
-        mensagem.textContent = "";
+        window.location.href = "./minhas-solicitacoes.html";
     });
 });

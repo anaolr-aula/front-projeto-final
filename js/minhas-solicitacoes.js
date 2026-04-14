@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const lista = document.getElementById("lista-solicitacoes");
     const filtros = document.querySelectorAll(".filtro");
 
-    const usuario = {
-        nome: "Mariana Alves"
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+    const usuario = JSON.parse(usuarioString);
 
     const solicitacoes = [
         {

@@ -15,9 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
         confirmarSenha: document.getElementById("confirmar_senha")
     };
 
-    const adminMock = {
-        nome: "Fernanda Costa"
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+    const adminMock = JSON.parse(usuarioString);
 
     nomeSidebar.textContent = adminMock.nome;
 

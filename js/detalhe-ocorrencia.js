@@ -26,12 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Troque esse mock para testar cada perfil:
-    const usuarioLogado = {
-        nome: "Mariana Alves",
-        perfil: "funcionario"
-        // perfil: "gestor"
-        // perfil: "admin"
-    };
+    // Recupera o usuário salvo no localStorage
+    const usuarioString = localStorage.getItem("usuarioLogado");
+    
+    // Se por algum motivo tentar acessar a página sem logar, redireciona pro login
+    if (!usuarioString) {
+        window.location.href = "./login.html";
+    }
+
+    const usuarioLogado = JSON.parse(usuarioString);
 
     const ocorrenciasMock = [
         {
