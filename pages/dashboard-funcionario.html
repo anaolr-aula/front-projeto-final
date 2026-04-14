@@ -1,70 +1,147 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal</title>
-    <link rel="stylesheet" href="../css/dashboard-funcionario.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard do Funcionário</title>
+    <link rel="stylesheet" href="../css/dashboard-funcionario.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 </head>
 <body>
     <header>
         <div id="imagem">
             <img src="../imagens/Logo_cortada.png" alt="Logo do sistema" />
-          </div>
-
-        <nav>
-          <i class="fa-solid fa-bell">
-            <a href="#"></a>
-          </i>
-
-            <div id="usuario-header">
-                <div id="img-usuario-header">
-                  <i class="fa-solid fa-user" id="icone-usuario"></i>
-                </div>
-
-                <span>Nome do usuário</span>
-              </div>
-        </nav>
-
+        </div>
+        <h2>Dashboard do Funcionário</h2>
     </header>
 
     <div id="dashboard">
-
-      <aside id="painel">
-        <div id="usuario">
-            <div id="img-usuario">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <span>Nome do usuário</span>
-        </div>
-
-        <nav id="ferramentas">
-            <div class="link-menu">
-                <i class="fa-solid fa-user"></i>
-                <a href="./perfil-gestor.html">Perfil</a>
+        <aside id="painel">
+            <div id="usuario">
+                <div id="img-usuario">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <span>Funcionário</span>
+                <span id="nome-sidebar">Nome do usuário</span>
             </div>
 
-       
-            <div class="link-menu">
-                <i class="fa-solid fa-chart-line"></i>
-                <a href="#">Dashboard</a>
-            </div>
+            <nav id="ferramentas">
+                <div class="link-menu">
+                    <i class="fa-solid fa-house"></i>
+                    <a href="./dashboard-funcionario.html">Início</a>
+                </div>
 
-            <div class="link-menu">
-                <i class="fa-solid fa-bell"></i>
-                <a href="#">Notificações</a>
-            </div>
-        </nav>
+                <div class="link-menu">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <a href="./nova-ocorrencia.html">Nova ocorrência</a>
+                </div>
 
-        <button id="btn-logout" type="button" onclick="window.location.href='../pages/login.html'">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            Logout
-        </button>
-    </aside>
+                <div class="link-menu">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <a href="./nova-sugestao.html">Nova sugestão</a>
+                </div>
 
+                <div class="link-menu">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <a href="./minhas-solicitacoes.html">Minhas solicitações</a>
+                </div>
+
+                <div class="link-menu">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="./perfil-funcionario.html">Perfil</a>
+                </div>
+            </nav>
+
+            <button
+                id="btn-logout"
+                type="button"
+                onclick="window.location.href='../pages/login.html'"
+            >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+        </aside>
+
+        <main id="content-dashboard">
+            <section id="boas-vindas" class="card">
+                <h1>Olá, <span id="nome-usuario">Usuário</span>!</h1>
+                <p>Bem-vindo ao SIGOS. Aqui você pode acompanhar suas ocorrências e sugestões.</p>
+            </section>
+
+            <section id="cards-resumo">
+                <div class="card card-resumo">
+                    <div class="icone-card">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h3>Ocorrências abertas</h3>
+                        <p id="ocorrencias-abertas">0</p>
+                    </div>
+                </div>
+
+                <div class="card card-resumo">
+                    <div class="icone-card">
+                        <i class="fa-solid fa-spinner"></i>
+                    </div>
+                    <div>
+                        <h3>Em andamento</h3>
+                        <p id="ocorrencias-andamento">0</p>
+                    </div>
+                </div>
+
+                <div class="card card-resumo">
+                    <div class="icone-card">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3>Sugestões enviadas</h3>
+                        <p id="sugestoes-enviadas">0</p>
+                    </div>
+                </div>
+
+                <div class="card card-resumo">
+                    <div class="icone-card">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <h3>Sugestões aprovadas</h3>
+                        <p id="sugestoes-aprovadas">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="acoes-rapidas" class="card">
+                <h2>Ações rápidas</h2>
+                <div class="acoes-grid">
+                    <a href="./nova-ocorrencia.html" class="acao-item">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span>Registrar ocorrência</span>
+                    </a>
+
+                    <a href="./nova-sugestao.html" class="acao-item">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <span>Enviar sugestão</span>
+                    </a>
+
+                    <a href="./minhas-solicitacoes.html" class="acao-item">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Minhas solicitações</span>
+                    </a>
+                </div>
+            </section>
+
+            <section id="ultimas-atividades" class="card">
+                <h2>Últimas atividades</h2>
+                <div id="lista-atividades">
+                    <!-- preenchido pelo JS -->
+                </div>
+            </section>
+        </main>
     </div>
-    
+
+    <script src="../js/dashboard-funcionario.js"></script>
 </body>
 </html>

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalhes da Ocorrência</title>
-    <link rel="stylesheet" href="../css/detalhe-ocorrencia.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/detalhe-ocorrencia.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 </head>
 <body>
     <header>
         <div id="imagem">
-            <img src="../imagens/Logo_cortada.png" alt="Logo do sistema">
+            <img src="../imagens/Logo_cortada.png" alt="Logo do sistema" />
         </div>
         <h2>Detalhes da Ocorrência</h2>
     </header>
@@ -21,26 +24,11 @@
                 <div id="img-usuario">
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <span>Gestor</span>
+                <span id="perfil-sidebar">Perfil</span>
                 <span id="nome-sidebar">Nome do usuário</span>
             </div>
 
-            <nav id="ferramentas">
-                <div class="link-menu">
-                    <i class="fa-solid fa-user"></i>
-                    <a href="./perfil-gestor.html">Perfil</a>
-                </div>
-
-                <div class="link-menu">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <a href="./dashboard-gestor.html">Dashboard</a>
-                </div>
-
-                <div class="link-menu">
-                    <i class="fa-solid fa-bell"></i>
-                    <a href="./notificacoes.html">Notificações</a>
-                </div>
-            </nav>
+            <nav id="ferramentas"></nav>
 
             <button
                 id="btn-logout"
@@ -56,7 +44,7 @@
             <form id="form-ocorrencia">
                 <div class="info">
                     <h3>Título</h3>
-                    <input type="text" id="titulo" readonly>
+                    <input type="text" id="titulo" readonly />
                 </div>
 
                 <div class="info">
@@ -67,50 +55,50 @@
                 <div class="info-grid">
                     <div class="info">
                         <h3>Categoria</h3>
-                        <input type="text" id="categoria" readonly>
+                        <input type="text" id="categoria" readonly />
                     </div>
 
                     <div class="info">
                         <h3>Setor de origem</h3>
-                        <input type="text" id="setor_origem" readonly>
+                        <input type="text" id="setor_origem" readonly />
                     </div>
                 </div>
 
                 <div class="info-grid">
                     <div class="info">
                         <h3>Setor responsável</h3>
-                        <input type="text" id="setor_responsavel" readonly>
+                        <input type="text" id="setor_responsavel" readonly />
                     </div>
 
                     <div class="info">
                         <h3>Local</h3>
-                        <input type="text" id="local" readonly>
+                        <input type="text" id="local" readonly />
                     </div>
                 </div>
 
                 <div class="info-grid">
                     <div class="info">
                         <h3>Urgência</h3>
-                        <input type="text" id="urgencia" readonly>
+                        <input type="text" id="urgencia" readonly />
                     </div>
 
                     <div class="info">
                         <h3>Autor</h3>
-                        <input type="text" id="autor" readonly>
+                        <input type="text" id="autor" readonly />
                     </div>
                 </div>
 
                 <div class="info">
                     <h3>Data de envio</h3>
-                    <input type="text" id="data_envio" readonly>
+                    <input type="text" id="data_envio" readonly />
                 </div>
 
                 <div class="info">
                     <h3>Anexo</h3>
-                    <img id="preview-anexo" src="" alt="Anexo da ocorrência">
+                    <img id="preview-anexo" src="" alt="Anexo da ocorrência" />
                 </div>
 
-                <div class="info-grid">
+                <div class="info-grid" id="bloco-gestao">
                     <div class="info">
                         <h3>Status</h3>
                         <select id="status">
@@ -133,7 +121,7 @@
                     </div>
                 </div>
 
-                <div class="info">
+                <div class="info" id="bloco-observacao">
                     <h3>Observação do gestor</h3>
                     <textarea
                         id="observacao_gestor"
