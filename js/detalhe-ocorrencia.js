@@ -4,8 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const ferramentas = document.getElementById("ferramentas");
 
     const blocoGestao = document.getElementById("bloco-gestao");
+    const blocoResponsavel = document.getElementById("bloco-responsavel");
     const blocoObservacao = document.getElementById("bloco-observacao");
     const btnSalvar = document.getElementById("btn-salvar");
+
+    const btnReabrir = document.getElementById("btn-reabrir");
+    const btnPdf = document.getElementById("btn-pdf");
+    const modalReabrir = document.getElementById("modal-reabrir");
+    const btnCancelarReabrir = document.getElementById("btn-cancelar-reabrir");
+    const btnConfirmarReabrir = document.getElementById("btn-confirmar-reabrir");
+    const motivoReabertura = document.getElementById("motivo_reabertura");
 
     const campos = {
         titulo: document.getElementById("titulo"),
@@ -19,19 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
         dataEnvio: document.getElementById("data_envio"),
         status: document.getElementById("status"),
         prioridade: document.getElementById("prioridade"),
+        responsavelOcorrencia: document.getElementById("responsavel_ocorrencia"),
+        responsavelAtual: document.getElementById("responsavel_atual"),
         observacao: document.getElementById("observacao_gestor"),
         anexo: document.getElementById("preview-anexo"),
         mensagem: document.getElementById("mensagem-ocorrencia"),
         form: document.getElementById("form-ocorrencia")
     };
 
-    // Troque esse mock para testar cada perfil:
-    // Recupera o usuário salvo no localStorage
     const usuarioString = localStorage.getItem("usuarioLogado");
-    
-    // Se por algum motivo tentar acessar a página sem logar, redireciona pro login
     if (!usuarioString) {
         window.location.href = "./login.html";
+        return;
     }
 
     const usuarioLogado = JSON.parse(usuarioString);
@@ -51,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             anexo: "../imagens/exemplo-ocorrencia.jpg",
             status: "em_analise",
             prioridade: "alta",
+            responsavel_atual: "João da Silva - Suporte",
             observacao_gestor: "Chamado encaminhado para a equipe técnica."
         },
         {
@@ -65,9 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
             autor: "Ana Souza",
             data_envio: "09/04/2026 às 14:20",
             anexo: "../imagens/exemplo-ocorrencia.jpg",
-            status: "aberta",
+            status: "concluida",
             prioridade: "critica",
-            observacao_gestor: ""
+            responsavel_atual: "Ana Lopes - Supervisora",
+            observacao_gestor: "Ocorrência finalizada após correção elétrica."
         }
     ];
 
@@ -113,11 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a href="./perfil-gestor.html">Perfil</a>
                 </div>
                 <div class="link-menu">
-                    <i class="fa-solid fa-table-columns"></i>
+                    <i class="fa-solid fa-folder-open"></i>
                     <a href="./painel-solicitacoes-gestor.html">Solicitações</a>
                 </div>
                 <div class="link-menu">
-                    <i class="fa-solid fa-chart-line"></i>
+                    <i class="fa-solid fa-table-columns"></i>
                     <a href="./dashboard-gestor.html">Dashboard</a>
                 </div>
                 <div class="link-menu">
@@ -148,35 +157,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
         }
-
-        const iconeSidebar = document.querySelector("#img-usuario i");
-
-if (perfil === "gestor") {
-    iconeSidebar.className = "fa-solid fa-user-tie";
-} else if (perfil === "admin") {
-    iconeSidebar.className = "fa-solid fa-user-shield";
-} else {
-    iconeSidebar.className = "fa-solid fa-user";
-}
     }
 
     function aplicarPermissoes(perfil) {
         if (perfil === "gestor") {
             campos.status.disabled = false;
             campos.prioridade.disabled = false;
+            campos.responsavelOcorrencia.disabled = false;
             campos.observacao.disabled = false;
+
             blocoGestao.style.display = "grid";
-            blocoObservacao.style.display = "flex";
-            btnSalvar.style.display = "block";
+            blocoResponsavel.style.display = "block";
+            blocoObservacao.style.display = "block";
+            btnSalvar.style.display = "inline-block";
+
             return;
         }
 
         campos.status.disabled = true;
         campos.prioridade.disabled = true;
+        campos.responsavelOcorrencia.disabled = true;
         campos.observacao.disabled = true;
+
         blocoGestao.style.display = "none";
+        blocoResponsavel.style.display = "none";
         blocoObservacao.style.display = "none";
         btnSalvar.style.display = "none";
+        btnReabrir.style.display = "none";
     }
 
     function preencherTela() {
@@ -197,13 +204,21 @@ if (perfil === "gestor") {
         campos.dataEnvio.value = ocorrencia.data_envio;
         campos.status.value = ocorrencia.status;
         campos.prioridade.value = ocorrencia.prioridade;
-        campos.observacao.value = ocorrencia.observacao_gestor;
+        campos.responsavelAtual.value =
+            ocorrencia.responsavel_atual || "Nenhum responsável definido";
+        campos.observacao.value = ocorrencia.observacao_gestor || "";
 
         if (ocorrencia.anexo) {
             campos.anexo.src = ocorrencia.anexo;
             campos.anexo.style.display = "block";
         } else {
             campos.anexo.style.display = "none";
+        }
+
+        if (usuarioLogado.perfil === "gestor" && ocorrencia.status === "concluida") {
+            btnReabrir.style.display = "inline-block";
+        } else {
+            btnReabrir.style.display = "none";
         }
     }
 
@@ -233,17 +248,70 @@ if (perfil === "gestor") {
         if (usuarioLogado.perfil !== "gestor") return;
         if (!validarFormulario()) return;
 
+        const responsavelSelecionado =
+            campos.responsavelOcorrencia.options[
+                campos.responsavelOcorrencia.selectedIndex
+            ]?.text || "";
+
         const payload = {
             id: ocorrencia.id,
             status: campos.status.value,
             prioridade: campos.prioridade.value,
+            responsavel: campos.responsavelOcorrencia.value
+                ? responsavelSelecionado
+                : campos.responsavelAtual.value,
             observacao_gestor: campos.observacao.value.trim()
         };
+
+        if (campos.responsavelOcorrencia.value) {
+            campos.responsavelAtual.value = responsavelSelecionado;
+        }
 
         console.log("Enviando para backend:", payload);
 
         campos.mensagem.style.color = "green";
         campos.mensagem.textContent = "Alterações salvas com sucesso.";
+
+        if (campos.status.value === "concluida") {
+            btnReabrir.style.display = "inline-block";
+        }
+    });
+
+    btnReabrir?.addEventListener("click", () => {
+        modalReabrir.classList.add("ativo");
+    });
+
+    btnCancelarReabrir?.addEventListener("click", () => {
+        modalReabrir.classList.remove("ativo");
+        motivoReabertura.value = "";
+    });
+
+    btnConfirmarReabrir?.addEventListener("click", () => {
+        if (!motivoReabertura.value.trim()) {
+            campos.mensagem.style.color = "#d62828";
+            campos.mensagem.textContent = "Informe o motivo da reabertura.";
+            return;
+        }
+
+        campos.status.value = "em_analise";
+        ocorrencia.status = "em_analise";
+
+        console.log("Reabertura:", {
+            id: ocorrencia.id,
+            novo_status: "em_analise",
+            motivo: motivoReabertura.value.trim()
+        });
+
+        campos.mensagem.style.color = "green";
+        campos.mensagem.textContent = "Ocorrência reaberta com sucesso.";
+
+        modalReabrir.classList.remove("ativo");
+        motivoReabertura.value = "";
+        btnReabrir.style.display = "none";
+    });
+
+    btnPdf?.addEventListener("click", () => {
+        window.print();
     });
 
     montarMenu(usuarioLogado.perfil);

@@ -121,6 +121,33 @@
                     </div>
                 </div>
 
+                <div class="info" id="bloco-responsavel">
+                    <h3>Responsável pelo atendimento</h3>
+
+                    <div class="responsavel-box">
+                        <div class="campo-responsavel">
+                            <label for="responsavel_ocorrencia">Selecionar responsável</label>
+                            <select id="responsavel_ocorrencia">
+                                <option value="">Selecione...</option>
+                                <option value="1">Maria Eduarda - Analista de TI</option>
+                                <option value="2">João da Silva - Suporte</option>
+                                <option value="3">Pedro Henrique - Técnico</option>
+                                <option value="4">Ana Lopes - Supervisora</option>
+                            </select>
+                        </div>
+
+                        <div class="campo-responsavel">
+                            <label for="responsavel_atual">Responsável atual</label>
+                            <input
+                                type="text"
+                                id="responsavel_atual"
+                                value="Nenhum responsável definido"
+                                readonly
+                            />
+                        </div>
+                    </div>
+                </div>
+
                 <div class="info" id="bloco-observacao">
                     <h3>Observação do gestor</h3>
                     <textarea
@@ -132,9 +159,45 @@
 
                 <p id="mensagem-ocorrencia" aria-live="polite"></p>
 
-                <button id="btn-salvar" type="submit">Salvar alterações</button>
+                <div id="acoes-ocorrencia">
+                    <button id="btn-salvar" type="submit">
+                        Salvar alterações
+                    </button>
+
+                    <button id="btn-reabrir" type="button" style="display: none;">
+                        Reabrir ocorrência
+                    </button>
+
+                    <button id="btn-pdf" type="button">
+                        Gerar PDF
+                    </button>
+                </div>
             </form>
         </main>
+    </div>
+
+    <div id="modal-reabrir" class="modal">
+        <div class="modal-content">
+            <h3>Reabrir ocorrência</h3>
+            <p>Tem certeza que deseja reabrir esta ocorrência?</p>
+
+            <label for="motivo_reabertura">Motivo da reabertura</label>
+            <textarea
+                id="motivo_reabertura"
+                rows="4"
+                placeholder="Explique por que a ocorrência está sendo reaberta"
+            ></textarea>
+
+            <div class="botoes-modal">
+                <button type="button" id="btn-cancelar-reabrir">
+                    Cancelar
+                </button>
+
+                <button type="button" id="btn-confirmar-reabrir" class="danger">
+                    Reabrir
+                </button>
+            </div>
+        </div>
     </div>
 
     <script src="../js/detalhe-ocorrencia.js"></script>

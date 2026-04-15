@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     const nomeSidebar = document.getElementById("nome-sidebar");
     const perfilSidebar = document.getElementById("perfil-sidebar");
-const ferramentas = document.getElementById("ferramentas");
+    const ferramentas = document.getElementById("ferramentas");
+
+    const blocoGestao = document.getElementById("bloco-gestao");
+    const blocoParecer = document.getElementById("bloco-parecer");
+    const btnSalvar = document.getElementById("btn-salvar");
+    const btnPdf = document.getElementById("btn-pdf");
 
     const campos = {
         titulo: document.getElementById("titulo"),
@@ -17,11 +22,11 @@ const ferramentas = document.getElementById("ferramentas");
         form: document.getElementById("form-sugestao")
     };
 
-    // Mock temporário até conectar com o backend
     const usuarioString = localStorage.getItem("usuarioLogado");
-    
+
     if (!usuarioString) {
         window.location.href = "./login.html";
+        return;
     }
 
     const usuarioLogado = JSON.parse(usuarioString);
@@ -100,7 +105,6 @@ const ferramentas = document.getElementById("ferramentas");
         }
     }
 
-
     const sugestao = {
         id: 9,
         titulo: "Melhorar iluminação do corredor",
@@ -113,6 +117,25 @@ const ferramentas = document.getElementById("ferramentas");
         status: "em_analise",
         parecer_gestor: "Sugestão em avaliação junto à equipe de infraestrutura."
     };
+
+    function aplicarPermissoes(perfil) {
+        if (perfil === "gestor") {
+            campos.status.disabled = false;
+            campos.parecerGestor.disabled = false;
+
+            blocoGestao.style.display = "block";
+            blocoParecer.style.display = "block";
+            btnSalvar.style.display = "inline-block";
+            return;
+        }
+
+        campos.status.disabled = true;
+        campos.parecerGestor.disabled = true;
+
+        blocoGestao.style.display = "none";
+        blocoParecer.style.display = "none";
+        btnSalvar.style.display = "none";
+    }
 
     function preencherTela() {
         nomeSidebar.textContent = usuarioLogado.nome;
@@ -143,6 +166,7 @@ const ferramentas = document.getElementById("ferramentas");
 
         campos.mensagem.textContent = "";
 
+        if (usuarioLogado.perfil !== "gestor") return;
         if (!validarFormulario()) return;
 
         const payload = {
@@ -154,9 +178,6 @@ const ferramentas = document.getElementById("ferramentas");
         try {
             console.log("Enviando para backend:", payload);
 
-            // Futuro:
-            // await fetch(`/sugestoes/${sugestao.id}`, {...})
-
             campos.mensagem.style.color = "green";
             campos.mensagem.textContent = "Alterações salvas com sucesso.";
         } catch (erro) {
@@ -166,7 +187,11 @@ const ferramentas = document.getElementById("ferramentas");
         }
     });
 
-    montarMenu(usuarioLogado.perfil);
+    btnPdf?.addEventListener("click", () => {
+        window.print();
+    });
 
+    montarMenu(usuarioLogado.perfil);
     preencherTela();
+    aplicarPermissoes(usuarioLogado.perfil);
 });
