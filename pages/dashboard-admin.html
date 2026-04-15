@@ -84,18 +84,14 @@
         <div class="card-painel">
           <h3>Sugestões em destaque</h3>
 
-          <div class="sugestao-box">
-            <p><strong>Sugestão em alta</strong></p>
-            <div class="barra"></div>
-            <p>Sugestão mais pedida</p>
-            <div class="barra2"></div>
+          <div id="lista-sugestoes-destaque-admin">
+            <!-- preenchido pelo JS -->
           </div>
 
           <div class="votacao">
-            <span>Votação</span>
-            <div class="botoes-votacao">
-              <span><i class="fa-solid fa-thumbs-up"></i> 167</span>
-              <span><i class="fa-solid fa-thumbs-down"></i> 13</span>
+            <span>Resumo da votação</span>
+            <div class="botoes-votacao" id="resumo-votacao-admin">
+              <!-- preenchido pelo JS -->
             </div>
           </div>
 
@@ -103,7 +99,7 @@
 
           <div class="inputs">
             <div class="campo-indicador">
-              <label>Tempo de resolução</label>
+              <label>Tempo médio de resolução</label>
               <div class="box" id="tempo">2 dias</div>
             </div>
 
@@ -113,14 +109,14 @@
             </div>
 
             <div class="campo-indicador">
-              <label>Responsável</label>
-              <div class="box" id="responsavel">Carlos Silva</div>
+              <label>Sugestões em análise</label>
+              <div class="box" id="sugestoes_analise">5</div>
             </div>
           </div>
         </div>
 
         <div class="card-painel">
-          <h3>Evolução</h3>
+          <h3>Ocorrências por prioridade</h3>
 
           <div class="grafico-box">
             <canvas id="graficoPizza"></canvas>
@@ -135,7 +131,7 @@
 
           <div class="info-grid">
             <div class="info" id="criticas">2 Críticas</div>
-            <div class="info" id="andamento">23 Andamento</div>
+            <div class="info" id="andamento">23 Em andamento</div>
             <div class="info" id="abertas">150 Abertas</div>
             <div class="info" id="resolvidas">75 Resolvidas</div>
           </div>

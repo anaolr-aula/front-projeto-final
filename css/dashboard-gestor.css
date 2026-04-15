@@ -330,3 +330,59 @@ header {
     #content-dashboard { padding: 16px; gap: 18px; }
     .boas-vindas h1 { font-size: 1.4rem; }
 }
+
+#lista-sugestoes-setor {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.sugestao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #f4f6f8;
+    flex-wrap: wrap;
+}
+
+.sugestao-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.sugestao-info p {
+    color: #555;
+    margin: 0;
+}
+
+.sugestao-extra {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.votos-box {
+    background: #e8f0fb;
+    color: #1E4F8A;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.item-resumo,
+.ocorrencia,
+.sugestao,
+.faixa {
+    flex-direction: column;
+    align-items: flex-start;
+}
