@@ -117,6 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a href="./painel-solicitacoes-gestor.html">Solicitações</a>
                 </div>
                 <div class="link-menu">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <a href="./dashboard-gestor.html">Dashboard</a>
+                </div>
+                <div class="link-menu">
                     <i class="fa-solid fa-bell"></i>
                     <a href="./notificacoes.html">Notificações</a>
                 </div>
@@ -144,6 +148,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
         }
+
+        const iconeSidebar = document.querySelector("#img-usuario i");
+
+if (perfil === "gestor") {
+    iconeSidebar.className = "fa-solid fa-user-tie";
+} else if (perfil === "admin") {
+    iconeSidebar.className = "fa-solid fa-user-shield";
+} else {
+    iconeSidebar.className = "fa-solid fa-user";
+}
     }
 
     function aplicarPermissoes(perfil) {

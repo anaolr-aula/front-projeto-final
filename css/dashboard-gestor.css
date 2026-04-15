@@ -275,22 +275,33 @@ header {
 }
 
 @media (max-width: 768px) {
-    #dashboard {
-        flex-direction: column;
-    }
-
+    #dashboard { flex-direction: column; }
+    
     #painel {
         width: 100%;
         min-height: auto;
-    }
-
-    #content-dashboard {
         padding: 20px;
+        gap: 24px;
     }
 
-    #cards-resumo {
-        grid-template-columns: 1fr;
+    #usuario {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
     }
+
+    #img-usuario {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+
+    #ferramentas { margin-top: 0; }
+
+    #content-dashboard { padding: 20px 16px; }
+
+    #cards-resumo { grid-template-columns: 1fr; }
 
     .item-resumo,
     .ocorrencia,
@@ -301,12 +312,21 @@ header {
     }
 
     .acoes-faixa,
-    .tags {
-        width: 100%;
-    }
+    .tags { width: 100%; }
 
     .acoes-faixa button,
-    .btn-acao {
-        width: 100%;
-    }
+    .btn-acao { width: 100%; }
+
+    header { padding: 12px 16px; gap: 12px; }
+    header h2 { font-size: 1.2rem; }
+    #imagem { width: 60px; height: 45px; }
+    #btn-logout { width: 100%; }
+}
+
+@media (max-width: 480px) {
+    body { font-size: 0.95rem; }
+    #usuario { flex-direction: column; text-align: center; }
+    .link-menu { font-size: 0.95rem; }
+    #content-dashboard { padding: 16px; gap: 18px; }
+    .boas-vindas h1 { font-size: 1.4rem; }
 }

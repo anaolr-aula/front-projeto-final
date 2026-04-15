@@ -257,6 +257,20 @@ a:hover {
         gap: 20px;
     }
 
+    /* Consistência: Alinha horizontalmente como nos outros */
+    #usuario {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+    }
+
+    #img-usuario {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+
     #ferramentas {
         margin-top: 0;
     }

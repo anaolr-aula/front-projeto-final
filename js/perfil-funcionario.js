@@ -19,16 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmarSenha: document.getElementById("confirmar-senha"),
   };
 
-  const funcionarioMock = {
-    id: 1,
-    nome: "Mariana Alves",
-    matricula: "2024015",
-    email: "mariana.alves@empresa.com",
-    tipo_usuario: "Funcionário",
-    cargo: "Assistente Administrativo",
-    setor: "Administrativo",
-    foto: "",
-  };
+  const usuarioString = localStorage.getItem("usuarioLogado");
+  if (!usuarioString) window.location.href = "./login.html";
+  const funcionarioMock = JSON.parse(usuarioString);
 
   let dadosOriginais = {};
   let fotoOriginal = "";

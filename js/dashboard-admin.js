@@ -88,6 +88,13 @@ function criarGrafico() {
 }
 
 function iniciar() {
+  const usuarioString = localStorage.getItem("usuarioLogado");
+  if (!usuarioString) window.location.href = "./login.html";
+  const admin = JSON.parse(usuarioString);
+  
+  const nomeSidebar = document.getElementById("nome-sidebar");
+  if (nomeSidebar) nomeSidebar.textContent = admin.nome;
+
   atualizarDashboard();
   criarGrafico();
 }

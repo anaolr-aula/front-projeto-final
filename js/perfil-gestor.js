@@ -19,16 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmarSenha: document.getElementById("confirmar-senha"),
     };
   
-    const gestorMock = {
-      id: 1,
-      nome: "Carlos Souza",
-      matricula: "2024001",
-      email: "carlos.souza@empresa.com",
-      tipo_usuario: "Gestor",
-      cargo: "Supervisor de Manutenção",
-      setor: "Manutenção",
-      foto: "",
-    };
+    const usuarioString = localStorage.getItem("usuarioLogado");
+  if (!usuarioString) window.location.href = "./login.html";
+  const gestorMock = JSON.parse(usuarioString);
   
     let dadosOriginais = {};
     let fotoOriginal = "";

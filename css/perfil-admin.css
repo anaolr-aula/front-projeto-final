@@ -257,6 +257,21 @@ a:hover {
         gap: 20px;
     }
 
+    /* Adicionado para alinhar foto e nome horizontalmente no mobile */
+    #usuario {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+    }
+
+    /* Redimensiona o círculo da foto no mobile */
+    #foto-perfil, #img-usuario {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+
     #ferramentas {
         margin-top: 0;
     }
