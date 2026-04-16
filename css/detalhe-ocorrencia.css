@@ -490,3 +490,98 @@ textarea {
         font-size: 1.4rem;
     }
 }
+
+@media print {
+    body {
+        background: white;
+        color: black;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #painel,
+    #btn-logout,
+    #btn-salvar,
+    #btn-pdf,
+    #mensagem-sugestao {
+        display: none !important;
+    }
+
+    header {
+        display: flex !important;
+        align-items: center;
+        gap: 16px;
+        padding: 0 0 20px 0;
+        background: #1E4F8A !important;
+        color: white !important;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+
+    #imagem {
+        width: 70px;
+        height: 50px;
+        flex-shrink: 0;
+        margin-left: 16px;
+    }
+
+    #imagem img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    header h2 {
+        color: white !important;
+        font-size: 1.4rem;
+    }
+
+    #dashboard {
+        display: block;
+    }
+
+    #content-detalhes {
+        background: white !important;
+        color: black !important;
+        padding: 0;
+        margin: 0;
+    }
+
+    #form-sugestao {
+        max-width: 100%;
+        gap: 16px;
+    }
+
+    .info,
+    .info-grid {
+        box-shadow: none;
+        border: 1px solid #d0d7de;
+        background: white !important;
+        color: black !important;
+        break-inside: avoid;
+    }
+
+    .info h3,
+    .info-grid .info h3 {
+        color: #1E4F8A !important;
+    }
+
+    input,
+    textarea,
+    select {
+        border: 1px solid #999;
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    @page {
+        size: A4;
+        margin: 1.5cm;
+    }
+}

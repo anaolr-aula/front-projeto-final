@@ -261,7 +261,7 @@ header h2 {
         gap: 24px;
     }
 
-    #usuario-box {
+    #usuario {
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
@@ -311,8 +311,9 @@ header h2 {
     body {
         font-size: 0.95rem;
     }
+   
 
-    #usuario-box {
+    #usuario {
         flex-direction: column;
         text-align: center;
     }
