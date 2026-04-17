@@ -18,10 +18,25 @@ document.addEventListener("DOMContentLoaded", () => {
             transition: all 0.3s ease;
         }
 
-        @media (max-width: 768px) {
+       @media (max-width: 768px) {
             #btn-hamburguer { display: block; }
             #btn-fechar-menu { display: block; }
-            #painel { position: fixed !important; top: 0; left: 0; height: 100vh !important; width: 260px !important; z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease; margin: 0 !important; }
+            
+            /* --- CORREÇÃO DO SCROLL AQUI NESTA REGRA #painel --- */
+            #painel { 
+                position: fixed !important; 
+                top: 0; 
+                left: 0; 
+                height: 100vh !important; 
+                width: 260px !important; 
+                z-index: 999; 
+                transform: translateX(-100%); 
+                transition: transform 0.3s ease; 
+                margin: 0 !important; 
+                overflow-y: auto !important; /* A MÁGICA: Permite descer a tela do menu! */
+                padding-bottom: 40px !important; /* Dá um espacinho extra em baixo do botão de logout */
+            }
+            
             #painel.menu-aberto { transform: translateX(0); }
             #overlay-menu.ativo { display: block; opacity: 1; }
             #usuario { flex-direction: column !important; margin-top: 30px; }
