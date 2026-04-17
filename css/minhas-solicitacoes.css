@@ -135,7 +135,23 @@ header {
     color: white;
 }
 
-#lista-solicitacoes {
+.bloco-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.cabecalho-bloco h2 {
+    color: #1E4F8A;
+    margin-bottom: 6px;
+}
+
+.cabecalho-bloco p {
+    color: #666;
+}
+
+#lista-solicitacoes,
+#lista-atribuicoes {
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -145,7 +161,7 @@ header {
     background-color: white;
     border-radius: 16px;
     padding: 22px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border-left: 6px solid #1E4F8A;
     display: flex;
     justify-content: space-between;
@@ -158,6 +174,10 @@ header {
 
 .card-solicitacao.sugestao {
     border-left-color: #1E4F8A;
+}
+
+.card-solicitacao.atribuida {
+    border-left-color: #d62828;
 }
 
 .info-solicitacao {
@@ -173,6 +193,10 @@ header {
 
 .card-solicitacao.ocorrencia .tipo {
     color: #d62828;
+}
+
+.card-solicitacao.atribuida .tipo {
+    color:#d62828
 }
 
 .info-solicitacao h3 {
@@ -208,8 +232,8 @@ header {
     color: #856404;
 }
 
-.status.andamento,
-.status.em-analise {
+.status.em_andamento,
+.status.em_analise {
     background-color: #dbeafe;
     color: #1d4ed8;
 }

@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const prioridadeUrl = params.get("prioridade");
+    const statusUrl = params.get("status");
+    const tipoUrl = params.get("tipo");
+
     const nomeSidebar = document.getElementById("nome-sidebar");
     const lista = document.getElementById("lista-solicitacoes");
     const filtros = document.querySelectorAll(".filtro");
@@ -12,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const usuarioString = localStorage.getItem("usuarioLogado");
     if (!usuarioString) {
         window.location.href = "./login.html";
+        return;
     }
+
     const gestor = JSON.parse(usuarioString);
 
     const solicitacoes = [
@@ -22,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo: "Computador não liga",
             descricao: "O computador do RH não liga desde ontem.",
             status: "em_analise",
+            prioridade: "alta",
             data: "13/04/2026",
             setor_origem: "RH",
             setor_responsavel: "TI",
@@ -34,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo: "Impressora travando",
             descricao: "A impressora do setor administrativo está travando com frequência.",
             status: "em_andamento",
+            prioridade: "media",
             data: "12/04/2026",
             setor_origem: "Administrativo",
             setor_responsavel: "TI",
@@ -63,12 +72,42 @@ document.addEventListener("DOMContentLoaded", () => {
             setor_responsavel: "RH",
             autor: "Fernanda Rocha",
             matricula: "2024008"
+        },
+        {
+            id: 5,
+            tipo: "ocorrencia",
+            titulo: "Fio exposto no corredor",
+            descricao: "Há um fio exposto próximo à recepção.",
+            status: "concluida",
+            prioridade: "alta",
+            data: "09/04/2026",
+            setor_origem: "Recepção",
+            setor_responsavel: "Manutenção",
+            autor: "Ana Souza",
+            matricula: "2024050"
+        },
+        {
+            id: 6,
+            tipo: "ocorrencia",
+            titulo: "Ar-condicionado fraco",
+            descricao: "O ar-condicionado da sala de reuniões não está gelando bem.",
+            status: "aberta",
+            prioridade: "baixa",
+            data: "08/04/2026",
+            setor_origem: "Administrativo",
+            setor_responsavel: "Manutenção",
+            autor: "Lucas Mendes",
+            matricula: "2024061"
         }
     ];
 
     let filtroAtual = "todas";
 
     nomeSidebar.textContent = gestor.nome;
+
+    if (tipoUrl === "ocorrencia" || tipoUrl === "sugestao") {
+        filtroAtual = tipoUrl;
+    }
 
     function formatarStatus(status) {
         const mapa = {
@@ -84,6 +123,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return mapa[status] || status;
     }
 
+    function formatarPrioridade(prioridade) {
+        const mapa = {
+            baixa: "Baixa",
+            media: "Média",
+            alta: "Alta",
+            critica: "Crítica"
+        };
+
+        return mapa[prioridade] || prioridade;
+    }
+
     function atualizarResumo() {
         totalItens.textContent = solicitacoes.length;
         totalOcorrencias.textContent = solicitacoes.filter(item => item.tipo === "ocorrencia").length;
@@ -95,7 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const termo = inputBusca.value.trim().toLowerCase();
 
         return solicitacoes.filter((item) => {
-            const bateFiltro = filtroAtual === "todas" || item.tipo === filtroAtual;
+            const bateFiltroTipo = filtroAtual === "todas" || item.tipo === filtroAtual;
+
+            const bateFiltroPrioridade =
+                !prioridadeUrl ||
+                (item.tipo === "ocorrencia" && item.prioridade === prioridadeUrl);
+
+            const bateFiltroStatus =
+                !statusUrl || item.status === statusUrl;
 
             const textoCompleto = `
                 ${item.titulo}
@@ -104,11 +161,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${item.setor_responsavel}
                 ${item.autor}
                 ${item.matricula}
+                ${item.status || ""}
+                ${item.prioridade || ""}
             `.toLowerCase();
 
             const bateBusca = textoCompleto.includes(termo);
 
-            return bateFiltro && bateBusca;
+            return (
+                bateFiltroTipo &&
+                bateFiltroPrioridade &&
+                bateFiltroStatus &&
+                bateBusca
+            );
         });
     }
 
@@ -151,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span><strong>Origem:</strong> ${item.setor_origem}</span>
                         <span><strong>Responsável:</strong> ${item.setor_responsavel}</span>
                         <span><strong>Data:</strong> ${item.data}</span>
+                        ${item.tipo === "ocorrencia" && item.prioridade ? `<span><strong>Prioridade:</strong> ${formatarPrioridade(item.prioridade)}</span>` : ""}
                         <span class="status ${item.status}">
                             ${formatarStatus(item.status)}
                         </span>
@@ -168,6 +233,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function aplicarFiltroVisualInicial() {
+        filtros.forEach((btn) => btn.classList.remove("ativo"));
+
+        const botaoCorrespondente = [...filtros].find(
+            (btn) => btn.dataset.filtro === filtroAtual
+        );
+
+        if (botaoCorrespondente) {
+            botaoCorrespondente.classList.add("ativo");
+        } else {
+            const botaoTodas = [...filtros].find(
+                (btn) => btn.dataset.filtro === "todas"
+            );
+            if (botaoTodas) botaoTodas.classList.add("ativo");
+        }
+    }
+
     filtros.forEach((botao) => {
         botao.addEventListener("click", () => {
             filtros.forEach(btn => btn.classList.remove("ativo"));
@@ -180,5 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
     inputBusca.addEventListener("input", renderizar);
 
     atualizarResumo();
+    aplicarFiltroVisualInicial();
     renderizar();
 });

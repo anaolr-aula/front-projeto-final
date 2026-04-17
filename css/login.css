@@ -189,3 +189,29 @@ a:hover {
         font-size: 0.95rem;
     }
 }
+
+/* --- VISUALIZAR SENHA --- */
+.senha-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.senha-container input {
+    width: 100%;
+    padding-right: 45px; /* Abre espaço para o ícone não ficar por cima do texto */
+}
+
+#toggle-senha {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    color: #666;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+#toggle-senha:hover {
+    color: #1E4F8A;
+}

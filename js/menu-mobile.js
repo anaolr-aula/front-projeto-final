@@ -1,95 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Cria e injeta o CSS do Menu Hamburguer dinamicamente
+    // --------------------------------------------------------
+    // 1. INJEÇÃO DE CSS (Menu Mobile + Menu Ativo)
+    // --------------------------------------------------------
     const style = document.createElement("style");
     style.innerHTML = `
         /* Estilo do botão Hamburguer no Header */
-        #btn-hamburguer {
-            display: none;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-            margin-left: auto; /* Empurra o botão para o canto direito */
-            padding: 5px;
+        #btn-hamburguer { display: none; background: transparent; border: none; color: white; font-size: 1.8rem; cursor: pointer; margin-left: auto; padding: 5px; }
+        #overlay-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 998; opacity: 0; transition: opacity 0.3s ease; }
+        #btn-fechar-menu { display: none; position: absolute; top: 15px; right: 20px; background: transparent; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+
+        /* Estilo para a página atual (Menu Ativo) */
+        .link-menu.ativo {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding-left: 10px;
+            border-left: 4px solid #f1c40f; /* Cor de destaque (amarelo/dourado) */
+            transition: all 0.3s ease;
         }
 
-        /* Estilo do Fundo Escuro (Overlay) */
-        #overlay-menu {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 998;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Botão de Fechar o menu (X) */
-        #btn-fechar-menu {
-            display: none;
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        /* Regras exclusivas para telas de celular e tablet */
         @media (max-width: 768px) {
-            #btn-hamburguer {
-                display: block;
-            }
-
-            #btn-fechar-menu {
-                display: block;
-            }
-
-            /* Transforma o painel num menu lateral flutuante */
-            #painel {
-                position: fixed !important;
-                top: 0;
-                left: 0;
-                height: 100vh !important;
-                width: 260px !important;
-                z-index: 999;
-                transform: translateX(-100%); /* Esconde fora da tela */
-                transition: transform 0.3s ease;
-                margin: 0 !important;
-            }
-
-            /* Classe que será ativada pelo JS para mostrar o menu */
-            #painel.menu-aberto {
-                transform: translateX(0);
-            }
-
-            /* Quando o overlay estiver ativo */
-            #overlay-menu.ativo {
-                display: block;
-                opacity: 1;
-            }
-
-            /* Corrige a foto e nome para ficarem em coluna no menu aberto */
-            #usuario {
-                flex-direction: column !important;
-                margin-top: 30px;
-            }
+            #btn-hamburguer { display: block; }
+            #btn-fechar-menu { display: block; }
+            #painel { position: fixed !important; top: 0; left: 0; height: 100vh !important; width: 260px !important; z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease; margin: 0 !important; }
+            #painel.menu-aberto { transform: translateX(0); }
+            #overlay-menu.ativo { display: block; opacity: 1; }
+            #usuario { flex-direction: column !important; margin-top: 30px; }
         }
     `;
     document.head.appendChild(style);
 
-    // 2. Cria e injeta a camada escura (Overlay) no body
     const overlay = document.createElement("div");
     overlay.id = "overlay-menu";
     document.body.appendChild(overlay);
 
-    // 3. Procura o Header e injeta o botão Hamburguer
     const header = document.querySelector("header");
     let btnHamburguer;
-    
     if (header) {
         btnHamburguer = document.createElement("button");
         btnHamburguer.id = "btn-hamburguer";
@@ -97,32 +42,58 @@ document.addEventListener("DOMContentLoaded", () => {
         header.appendChild(btnHamburguer);
     }
 
-    // 4. Procura o Painel Lateral e injeta o botão de Fechar (X)
     const painel = document.getElementById("painel");
     let btnFechar;
-
     if (painel) {
         btnFechar = document.createElement("button");
         btnFechar.id = "btn-fechar-menu";
         btnFechar.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-        painel.insertBefore(btnFechar, painel.firstChild); // Adiciona no topo do painel
+        painel.insertBefore(btnFechar, painel.firstChild);
     }
 
-    // 5. Lógica de Abrir e Fechar
     function abrirMenu() {
         if (painel) painel.classList.add("menu-aberto");
         overlay.classList.add("ativo");
-        document.body.style.overflow = "hidden"; // Impede o scroll da tela atrás do menu
+        document.body.style.overflow = "hidden";
     }
 
     function fecharMenu() {
         if (painel) painel.classList.remove("menu-aberto");
         overlay.classList.remove("ativo");
-        document.body.style.overflow = "auto"; // Libera o scroll
+        document.body.style.overflow = "auto";
     }
 
-    // Adiciona os eventos de clique
     if (btnHamburguer) btnHamburguer.addEventListener("click", abrirMenu);
     if (btnFechar) btnFechar.addEventListener("click", fecharMenu);
-    overlay.addEventListener("click", fecharMenu); // Fecha se clicar fora do menu
+    overlay.addEventListener("click", fecharMenu);
+
+
+    // --------------------------------------------------------
+    // 2. LÓGICA DE MENU ATIVO (Highlight da página atual)
+    // --------------------------------------------------------
+    const linksMenu = document.querySelectorAll(".link-menu a");
+    const urlAtual = window.location.pathname.split("/").pop(); // Pega o nome do arquivo atual (ex: dashboard-admin.html)
+
+    linksMenu.forEach(link => {
+        const hrefDoLink = link.getAttribute("href").replace("./", "");
+        if (hrefDoLink === urlAtual) {
+            link.parentElement.classList.add("ativo"); // Adiciona a classe na div pai (.link-menu)
+        }
+    });
+
+    // --------------------------------------------------------
+    // 3. LÓGICA DE LOGOUT SEGURO
+    // --------------------------------------------------------
+    const btnLogout = document.getElementById("btn-logout");
+    if (btnLogout) {
+        // Remove o redirecionamento HTML direto para podermos limpar os dados antes
+        btnLogout.removeAttribute("onclick");
+        
+        btnLogout.addEventListener("click", () => {
+            // Apaga a sessão da memória
+            localStorage.removeItem("usuarioLogado");
+            // Redireciona para o login
+            window.location.href = "../pages/login.html";
+        });
+    }
 });

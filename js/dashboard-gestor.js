@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const nomeSidebar = document.getElementById("nome-sidebar");
     const listaSugestoesSetor = document.getElementById("lista-sugestoes-setor");
+    
 
     const usuarioString = localStorage.getItem("usuarioLogado");
     if (!usuarioString) {
@@ -94,6 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
             listaSugestoesSetor.appendChild(div);
         });
     }
+
+    
 
     renderizarSugestoes();
 });
